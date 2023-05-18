@@ -1,0 +1,359 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14098,        351]
+NotebookOptionsPosition[     13506,        325]
+NotebookOutlinePosition[     13868,        341]
+CellTagsIndexPosition[     13825,        338]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["DaMaSCUS-CRUST plots", "Title",
+ CellChangeTimes->{{3.727157350735265*^9, 3.727157355726615*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Color", "=", 
+   RowBox[{"ColorData", "[", 
+    RowBox[{"97", ",", "\"\<ColorList\>\""}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.727157378594564*^9, 3.727157388007823*^9}, 
+   3.727157575184778*^9, {3.7325305942348146`*^9, 3.732530621472453*^9}, {
+   3.765717817571995*^9, 3.765717818504004*^9}, {3.765718411358712*^9, 
+   3.765718424238234*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Constraints on Cross Section", "Section",
+ CellChangeTimes->{{3.7271574095116568`*^9, 3.7271574155368633`*^9}, {
+  3.765717777649005*^9, 3.765717799370088*^9}, {3.765718207356864*^9, 
+  3.7657182197022457`*^9}}],
+
+Cell["Add the simulation IDs to this array.", "Text",
+ CellChangeTimes->{{3.765718282558043*^9, 3.7657182918245697`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"SimID", "=", 
+    RowBox[{"{", "\"\<XENON10_C\>\"", "}"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Analytic", " ", "constraint", " ", "curve"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"LimitsA", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"\"\<./results/\>\"", "<>", 
+        RowBox[{"SimID", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "<>", 
+        "\"\</Limits_Analytic.txt\>\""}], ",", "\"\<Data\>\""}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "SimID", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PlotA", "=", 
+   RowBox[{"ListLogLogPlot", "[", 
+    RowBox[{"LimitsA", ",", "\[IndentingNewLine]", 
+     RowBox[{"Joined", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotStyle", "\[Rule]", "Dashed"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<\[Sigma][\!\(\*SuperscriptBox[\(cm\), \(2\)]\)]\>\"", ",", 
+          "None"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<\!\(\*SubscriptBox[\(m\), \(\[Chi]\)]\)[GeV]\>\"", ",", 
+          "None"}], "}"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotLegends", "\[Rule]", "SimID"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"LimitsMC", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"\"\<./results/\>\"", "<>", 
+        RowBox[{"SimID", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "<>", "\"\</Limits_MC.txt\>\""}], 
+       ",", "\"\<Data\>\""}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "SimID", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PlotListMC", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", 
+    RowBox[{"Length", "[", "SimID", "]"}]}], ",", 
+   RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"PlotListMC", ",", 
+      RowBox[{"LimitsMC", "[", 
+       RowBox[{"[", 
+        RowBox[{"i", ",", "All", ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"PlotListMC", ",", 
+      RowBox[{"LimitsMC", "[", 
+       RowBox[{"[", 
+        RowBox[{"i", ",", "All", ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], "]"}], ";"}]}], 
+  "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FillingList", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"i", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i", "+", "1"}], "}"}], ",", 
+         RowBox[{"Directive", "[", 
+          RowBox[{
+           RowBox[{"Color", "[", 
+            RowBox[{"[", 
+             RowBox[{"Ceiling", "[", 
+              FractionBox["i", "2"], "]"}], "]"}], "]"}], ",", 
+           RowBox[{"Opacity", "[", "0.3", "]"}]}], "]"}]}], "}"}]}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "PlotListMC", "]"}], ",", "2"}], "}"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PlotMC", "=", 
+   RowBox[{"ListLogLogPlot", "[", 
+    RowBox[{"PlotListMC", ",", "\[IndentingNewLine]", 
+     RowBox[{"Joined", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotStyle", "\[Rule]", "None"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Filling", "\[Rule]", "FillingList"}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"PlotA", ",", "PlotMC"}], "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "SimID", ",", "LimitsA", ",", "PlotA", ",", "LimitsMC", ",", "PlotListMC", 
+   ",", "FillingList", ",", "PlotMC"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.727157419413467*^9, 3.72715754932766*^9}, {
+   3.727157579656292*^9, 3.727157719638853*^9}, 3.727157793725213*^9, {
+   3.7271578383807297`*^9, 3.727158055125955*^9}, {3.7271580999429903`*^9, 
+   3.727158267702993*^9}, {3.7271583776446*^9, 3.72715846378302*^9}, {
+   3.727158533767063*^9, 3.7271585872152987`*^9}, {3.727442667296948*^9, 
+   3.7274426765769176`*^9}, {3.727442733315302*^9, 3.727442749972444*^9}, {
+   3.727442793902678*^9, 3.727442879985227*^9}, {3.728749519658731*^9, 
+   3.7287495400590076`*^9}, {3.728750059702729*^9, 3.7287500599672117`*^9}, {
+   3.728750119513739*^9, 3.728750138046564*^9}, {3.728750179132111*^9, 
+   3.728750234709675*^9}, {3.72875099987964*^9, 3.728751004998108*^9}, {
+   3.72875318911653*^9, 3.7287531952277718`*^9}, {3.728753703866055*^9, 
+   3.728753705695509*^9}, {3.728763380644315*^9, 3.728763388590602*^9}, {
+   3.728815456885191*^9, 3.728815471424897*^9}, {3.729184815214603*^9, 
+   3.7291848317365093`*^9}, {3.729535331763192*^9, 3.729535332018725*^9}, {
+   3.7295361971137733`*^9, 3.729536225854648*^9}, {3.729938439194528*^9, 
+   3.729938450822468*^9}, {3.72994126141403*^9, 3.7299412872673397`*^9}, {
+   3.729987072530487*^9, 3.729987075346033*^9}, {3.7300250878668528`*^9, 
+   3.7300250896945333`*^9}, {3.730039267967084*^9, 3.7300392832423353`*^9}, {
+   3.73080114748916*^9, 3.730801179039727*^9}, {3.730910210105234*^9, 
+   3.730910210368964*^9}, {3.731065700604409*^9, 3.7310657482525454`*^9}, {
+   3.73108962392031*^9, 3.731089628365499*^9}, {3.7311005610584087`*^9, 
+   3.731100608813157*^9}, {3.7311553558140383`*^9, 3.731155367491323*^9}, {
+   3.731155399404138*^9, 3.7311556796864653`*^9}, {3.7311557124939623`*^9, 
+   3.7311557818434343`*^9}, {3.731156155677437*^9, 3.731156239393221*^9}, {
+   3.73115645668228*^9, 3.7311564583607683`*^9}, {3.731186862933605*^9, 
+   3.731186920517993*^9}, {3.731323108721815*^9, 3.731323108787345*^9}, {
+   3.7314068129708357`*^9, 3.731406815581394*^9}, {3.731407829950263*^9, 
+   3.73140783179699*^9}, {3.73140816544582*^9, 3.731408166292697*^9}, {
+   3.731415537818912*^9, 3.731415542298074*^9}, {3.73141605951005*^9, 
+   3.731416063625312*^9}, {3.731416293058864*^9, 3.731416296655287*^9}, {
+   3.731416338852392*^9, 3.73141633909175*^9}, {3.731416444909113*^9, 
+   3.731416448663081*^9}, {3.731416725157566*^9, 3.731416747983988*^9}, {
+   3.7314177070724*^9, 3.731417734799711*^9}, 3.7314202525423307`*^9, 
+   3.731420850318611*^9, {3.7323021396646833`*^9, 3.732302139984295*^9}, {
+   3.73230387103087*^9, 3.732303873078473*^9}, {3.7323039455219393`*^9, 
+   3.732303945703183*^9}, {3.732440331050123*^9, 3.7324404339662857`*^9}, {
+   3.732440464722022*^9, 3.732440470973584*^9}, {3.7324405464238873`*^9, 
+   3.73244055073822*^9}, 3.732448260820863*^9, {3.73244919288151*^9, 
+   3.732449258277021*^9}, {3.732449289761311*^9, 3.732449332981757*^9}, {
+   3.732449368808728*^9, 3.7324493718899603`*^9}, {3.732449543588344*^9, 
+   3.732449547131311*^9}, {3.7324497977291317`*^9, 3.7324497982502413`*^9}, {
+   3.7324498497605247`*^9, 3.732449871637813*^9}, 3.732449979343314*^9, {
+   3.732450562936243*^9, 3.7324505947195683`*^9}, {3.732530377895317*^9, 
+   3.732530412270257*^9}, {3.7325305453861732`*^9, 3.732530552001083*^9}, {
+   3.7325306618829927`*^9, 3.732530686924397*^9}, {3.7325307454687147`*^9, 
+   3.732530783537182*^9}, {3.732530860725162*^9, 3.7325308902763653`*^9}, {
+   3.732530924236167*^9, 3.732530930197606*^9}, {3.7325309679636908`*^9, 
+   3.732531020828476*^9}, {3.732531303597456*^9, 3.732531323644761*^9}, {
+   3.732645985973043*^9, 3.732645998027458*^9}, {3.7504088102646*^9, 
+   3.750408834263487*^9}, {3.75048883658368*^9, 3.750488845078751*^9}, {
+   3.750574547331357*^9, 3.7505745728588037`*^9}, {3.750574603675664*^9, 
+   3.7505746084283113`*^9}, {3.75057627880015*^9, 3.750576318044467*^9}, 
+   3.7505769911422*^9, {3.765718192507761*^9, 3.7657181932820587`*^9}, {
+   3.765718378193832*^9, 3.765718392602276*^9}, {3.765718439551282*^9, 
+   3.76571854497486*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Constraints on SI contact interactions with nuclear recoil experiments\
+\>", "Section",
+ CellChangeTimes->{{3.7657178063085833`*^9, 3.765717812932119*^9}, {
+  3.7657182625119534`*^9, 3.765718272307851*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SimID", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<XENON1T\>\"", ",", "\"\<CRESST-II\>\"", ",", 
+     "\"\<CRESST-surface\>\"", ",", "\"\<DAMIC_2011\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Limits", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"\"\<./results/\>\"", "<>", 
+        RowBox[{"SimID", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "<>", "\"\</Limits_MC.txt\>\""}], 
+       ",", "\"\<Data\>\""}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "SimID", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PlotList", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", 
+    RowBox[{"Length", "[", "SimID", "]"}]}], ",", 
+   RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"PlotList", ",", 
+      RowBox[{"Limits", "[", 
+       RowBox[{"[", 
+        RowBox[{"i", ",", "All", ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"PlotList", ",", 
+      RowBox[{"Limits", "[", 
+       RowBox[{"[", 
+        RowBox[{"i", ",", "All", ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], "]"}], ";"}]}], 
+  "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ListLogLogPlot", "[", 
+  RowBox[{"PlotList", ",", "\[IndentingNewLine]", 
+   RowBox[{"Joined", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotStyle", "\[Rule]", "None"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"FrameLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<\!\(\*SubscriptBox[\(\[Sigma]\), \
+\(p\)]\)[\!\(\*SuperscriptBox[\(cm\), \(2\)]\)]\>\"", ",", "None"}], "}"}], 
+      ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<\!\(\*SubscriptBox[\(m\), \(\[Chi]\)]\)[GeV]\>\"", ",", "None"}], 
+       "}"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", "\[IndentingNewLine]", 
+   
+   RowBox[{"Filling", "\[Rule]", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"i", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"i", "+", "1"}], "}"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", 
+        RowBox[{"Length", "[", "PlotList", "]"}], ",", "2"}], "}"}]}], 
+     "]"}]}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{"SimID", ",", "Limits", ",", "PlotList"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.765717835753471*^9, 3.765717853560009*^9}, {
+   3.765717896299533*^9, 3.765717897094891*^9}, 3.765718064075482*^9, {
+   3.765718103036359*^9, 3.7657181486632442`*^9}, {3.765718575054207*^9, 
+   3.765718589249004*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1280, 1396},
+WindowMargins->{{Automatic, -2}, {Automatic, 375}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 103, 1, 92, "Title"],
+Cell[686, 25, 519, 12, 65, "Input"],
+Cell[CellGroupData[{
+Cell[1230, 41, 217, 3, 64, "Section"],
+Cell[1450, 46, 121, 1, 30, "Text"],
+Cell[1574, 49, 8522, 178, 531, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10133, 232, 216, 4, 64, "Section"],
+Cell[10352, 238, 3126, 83, 365, "Input"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
